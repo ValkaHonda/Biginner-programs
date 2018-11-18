@@ -26,7 +26,7 @@ import java.util.Scanner;
 public class HorsePath {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
+
         scanner.close();
     }
 }
