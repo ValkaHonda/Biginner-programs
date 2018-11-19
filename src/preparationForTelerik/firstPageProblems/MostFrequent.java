@@ -1,5 +1,7 @@
 package preparationForTelerik.firstPageProblems;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -36,12 +38,24 @@ public class MostFrequent {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = Integer.valueOf(scanner.nextLine());
-        int[] arr = new int[n];
+        int number = 0; //= arr[0];
+        int numberOccurrences = 1;
+        Map<Integer,Integer> occurrences = new HashMap<>();
+
         for (int i = 0; i < n; i++) {
-            arr[i] = Integer.valueOf(scanner.nextLine());
+            int currentNumber = Integer.valueOf(scanner.nextLine());
+            if (occurrences.containsKey(currentNumber)){
+                occurrences.put(currentNumber,occurrences.get(currentNumber)+1);
+            } else {
+                occurrences.put(currentNumber,1);
+            }
+
+            if (occurrences.get(currentNumber) > numberOccurrences) {
+                numberOccurrences = occurrences.get(currentNumber);
+                number = currentNumber;
+            }
         }
-
-
+        System.out.println(number + "(" + numberOccurrences + " times)");
         scanner.close();
     }
 
