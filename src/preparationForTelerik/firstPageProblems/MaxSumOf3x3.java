@@ -3,7 +3,8 @@ package preparationForTelerik.firstPageProblems;
 import java.util.Scanner;
 
 /**
- * Write a program that reads a rectangular matrix of size N x M and finds in it the square 3 x 3 that has maximal sum of its elements. Print that sum.
+ * Write a program that reads a rectangular matrix of size N x M and finds in it the square 3 x 3 that has
+ * maximal sum of its elements. Print that sum.
 
  Input
  On the first line you will receive the numbers N and M separated by a single space

@@ -3,7 +3,8 @@ package preparationForTelerik.firstPageProblems;
 import java.util.Arrays;
 import java.util.Scanner;
 /*
-* We are given a matrix of strings of size N x M. Sequences in the matrix we define as sets of several neighbour elements located on the same line, column or diagonal. Write a program that finds the longest sequence of equal strings in the matrix and prints its length.
+* We are given a matrix of strings of size N x M. Sequences in the matrix we define as sets of several neighbour elements located on the same line, column or diagonal.
+* Write a program that finds the longest sequence of equal strings in the matrix and prints its length.
 
 Input
 On the first line you will receive the numbers N and M separated by a single space
