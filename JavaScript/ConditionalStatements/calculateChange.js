@@ -21,27 +21,31 @@ const getGets = (arr) => {
   const price = Number(gets());
   const givinMoney = Number(gets());
 
-let n = givinMoney - price;
+let n = (givinMoney - price).toFixed(2);
 // print('expected: ' + n);
 
 let strArr = n = (n + "").split(".");
 
 let a = Number(strArr[0]);
-let decimalPart = Number(strArr[1]);
+let decimalPart = Number(strArr[1]).toFixed(2);
+
+// print('&&***' + n);
+// print('-------->' + a);
+// print('--------' + decimalPart);
 
 if (a > 0){
     print(a + ' x 1 lev');
 }
 
 let fifty = Math.floor(decimalPart / 50);
-if(fifty > 0){
-    print(fifty+" x 50 stotinki");
+if(fifty >= 1){
+    print(fifty +" x 50 stotinki");
     decimalPart -= 50;
 }
 
 let twenty = Math.floor(decimalPart / 20);
-if(twenty > 0){
-    print(twenty+" x 20 stotinki");
+if(twenty > 0 && twenty < 6){
+    print(twenty + " x 20 stotinki");
     decimalPart -= (20*twenty);
 }
 
@@ -69,3 +73,5 @@ if(one >= 1){
     print(one+" x 1 stotinka");
     decimalPart -= (1*one);
 }
+// print("n " + n);
+// print('decimal part' + decimalPart);
