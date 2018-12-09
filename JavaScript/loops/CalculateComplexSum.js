@@ -25,7 +25,7 @@ const getGets = (arr) => {
 
   for(let i = 1; i <= n; i++){
       let factorial = Number(calculateFactorial(i));
-      let temp = (factorial / (x*i));
+      let temp = (factorial / (Math.pow(x,i)));
       result += temp;
   }
 
