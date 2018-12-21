@@ -10,7 +10,7 @@ const getGets = (arr) => {
   
   // This is the place where you must place your test data
   const test = [
-    '1020340567.89'
+    '-12400000000000000000000000000000000000.13'
   ];
   
   const gets = this.gets || getGets(test);
@@ -18,7 +18,7 @@ const getGets = (arr) => {
   
   // Solution of the problem. All the above code is for local testing. The test variable is with the first test case 2 + 2 = 4
 
-  function calculateSum(realPart,decimalPart){
+  function calculateSum(realPart,decimalPart=undefined){
       let realNums = realPart.map(
           (element) => Number(element)
       );
@@ -38,26 +38,29 @@ const getGets = (arr) => {
         );
 
       }
+
       return sum;
   }
 
-  let n = Number(gets());
-  n = Math.abs(n);
+  let n = gets();
   let realPart = [];
   let decimalPart = [];
-  let holeNumber = n.toString().split('.');
+  let holeNumber = n.split('.');
   realPart = holeNumber[0].split('');
+  realPart = realPart.filter(
+      element => element !== '-'
+  );
   if(holeNumber.length > 1){
       decimalPart = holeNumber[1].split('');
   }
-
+  let sum = 0;
   if(decimalPart.length > 0){
-      n = calculateSum(realPart,decimalPart);
+      sum = Number(calculateSum(realPart,decimalPart));
     } else {
-        n = calculateSum(realPart);
+        sum = Number(calculateSum(realPart));
   }
 
-  while(n>9){
-      n = calculateSum(n.toString().split(''));
+  while(sum>9){
+      sum = Number(calculateSum(sum.toString().split('')));
   }
-  print(n);
+  print(sum);
