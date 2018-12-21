@@ -19,77 +19,103 @@ const getGets = (arr) => {
   
   // Solution of the problem. All the above code is for local testing. The test variable is with the first test case 2 + 2 = 4
 
-  function setCharAt(str,index,chr) {
-    if(index > str.length-1) return str;
-    return str.substr(0,index) + chr + str.substr(index+1);
-}
+
 
   let stuff = gets();
   const path = gets().split(' ').map(Number);
 
-  print(stuff);
-  print(path);
+//   print(stuff);
+  let charArr = stuff.split('');
+//   print(path);
   const n = stuff.length;
 
   let index = 0;
   let soulCount = 0;
   let foodCount = 0;
   let deadLockCount = 0;
+  let jumpCount = 0;
+  let isDeadLock = false;
 
-  function kittyStep(stuff,index){
-      if(stuff[index] == '@'){
+  function kittyStep(charArr,index){
+      if(charArr[index] == '@'){
         soulCount++;
-      } else if(stuff[index] == 'x'){
+        charArr[index] = '$';
+      } else if(charArr[index] == 'x'){
         if(index % 2 == 0){
             if(soulCount <= 0){
                 ///shit !!!!!!!!!!!!!!!!!! DEADLOCK
-                print('deadlock --> no souls');
+                // print('deadlock --> no souls');
+                return false;
             } else {
                 soulCount--;
-                setCharAt(stuff,index,'@');
+                //setCharAt(stuff,index,'@');
+                charArr[index] = '@';
                 deadLockCount++;
+                // print(charArr);
             }
         } else {
             if(foodCount <= 0){
                 ///shit !!!!!!!!!!!!!!!!!! DEADLOCK
-                print('deadlock --> no food');
+                // print('deadlock --> no food');
+                return false;
             } else {
                 foodCount--;
-                setCharAt(stuff,index,'*');
+                // setCharAt(stuff,index,'*');
+                charArr[index] = '*';
                 deadLockCount++;
+                // print(charArr);
             }
         }
-      } else {
+      } else if(charArr[index] == '*'){
         foodCount++;
+        charArr[index] = '$';
       }
   }
 
-  kittyStep(stuff,index);
-
-  path.forEach(element => {
-    let newIndex = index + element;
-    
-    while(newIndex < 0){
-        newIndex = index + (-newIndex);
-        print('-');
-    }
-
-    while(newIndex >= n){
-        newIndex = index - newIndex;
-        print('-');
-    }
-
-    kittyStep(stuff,newIndex);
-
-    index = newIndex;
-  });
+  
+  if(kittyStep(charArr,index) === false){
+    isDeadLock = true;
+  } else {
+      jumpCount++;
+        for (const element of path) {
+          let newIndex = index + element;
+          
+          while(newIndex < 0){
+              newIndex = n + newIndex;
+            //   print('-');
+          }
+      
+      
+          if(newIndex >= n){
+              newIndex = newIndex - n;
+          }
+      
+          if(kittyStep(charArr,newIndex) === false){
+              isDeadLock = true;
+              return;
+          }
+      
+          index = newIndex;
+          jumpCount++;
+        }
+  }
 
   /*
   Coder souls collected: 2
     Food collected: 0
     Deadlocks: 1
 */
-  print(`Coder souls collected: ${soulCount}`);
-  print(`Food collected: ${foodCount}`);
-  print(`Deadlocks: ${deadLockCount}`);
+  if(isDeadLock){
+//     You are deadlocked, you greedy kitty!
+// Jumps before deadlock: 0
+    print('You are deadlocked, you greedy kitty!');
+    print('Jumps before deadlock: '+jumpCount);
+  } else {
+      print(`Coder souls collected: ${soulCount}`);
+      print(`Food collected: ${foodCount}`);
+      print(`Deadlocks: ${deadLockCount}`);
+  }
 
+
+
+  //    -1 0 1 2 3
