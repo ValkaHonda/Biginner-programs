@@ -75,12 +75,14 @@ const getGets = (arr) => {
   
   if(kittyStep(charArr,index) === false){
     isDeadLock = true;
-  } else {
+  }
+
+  else {
       jumpCount++;
         for (const element of path) {
           let newIndex = index + element;
           
-          while(newIndex < 0){
+          if(newIndex < 0){
               newIndex = n + newIndex;
             //   print('-');
           }
