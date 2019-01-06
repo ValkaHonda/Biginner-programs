@@ -31,9 +31,9 @@ const getGets = (arr) => {
     element => Number(element)
   ).filter(
     element => element % 2 === 0
-  );
-
-  print(numbers);
+  ).forEach(element => {
+    print(element);
+  });
 
  
 
