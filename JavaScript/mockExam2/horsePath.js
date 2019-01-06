@@ -10,7 +10,7 @@ const getGets = (arr) => {
   
   // This is the place where you must place your test data
   const test = [
-      '20'
+      '15'
   ];
   
   const gets = this.gets || getGets(test);
