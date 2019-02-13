@@ -1,6 +1,5 @@
 const getGets = (arr) => {
     let index = 0;
-  
     return () => {
       const toReturn = arr[index];
       index += 1;
